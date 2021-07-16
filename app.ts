@@ -1,35 +1,18 @@
-const person: {
-  name: string;
-  age: number;
-  hobbies: string[];
-  role: [number, string]; //tuple type을 선언하는 방법
-} = {
-  name: "이인우",
-  age: 30,
-  hobbies: ["스포츠", "요리"],
-  role: [2, "author"],
-};
-
-// person.role = [0, "admin", "user"];
-// 이처럼 할당 시에는 타입스크립트가 오류를 잡아주지만,
-
-person.role.push("user");
-// 이러한 동작까지는 타입스크립트가 예방할 수 없다는 것을 염두에 두어야 한다.
-
-// 위에서부터 0, 1, 2 순으로 값을 할당 받는다.
-enum Role {
-  ADMIN,
-  // 만약 ADMIN = 5와 같은 식으로 할당하면 시작점을 5로 잡을 수 있다.
-  READ_ONLY,
-  // 시작점과 상관없이 100 같은 숫자를 할당할 수도 있고, 심지어 텍스트를 할당할 수도 있다.
-  AUTHOR,
+function combine(input1: number | string, input2: number | string) {
+  // const result = input1 + input2;
+  // 타입스크립트는 input1과 2가 union type이라는 것만 체크하여 + 연산자가 동작하지
+  // 않는다고 판단하기에(실제로는 가능하지만), 아래와 같이 동적 타입 체킹으로 이를 회피한다.
+  let result;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
-// 즉 enum은 어떠한 값과 매핑되어 있는, 읽기 쉬운 식별자를 위해 사용한다.
 
-const employee = {
-  role: Role.ADMIN,
-};
+const combinedAges = combine(30, 26);
+console.log(combinedAges);
 
-if (employee.role === Role.ADMIN) {
-  console.log("관리자입니다.");
-}
+const combinedNames = combine("Max", "Anna");
+console.log(combinedNames);
