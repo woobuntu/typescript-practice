@@ -1,7 +1,10 @@
+type Combinable = number | string;
+type ConversionDescriptor = "as-number" | "as-text";
+
 function combine(
-  input1: number | string,
-  input2: number | string,
-  resultConversion: "as-number" | "as-text" // 리터럴 타입
+  input1: Combinable,
+  input2: Combinable,
+  resultConversion: ConversionDescriptor // 리터럴 타입
 ) {
   // const result = input1 + input2;
   // 타입스크립트는 input1과 2가 union type이라는 것만 체크하여 + 연산자가 동작하지
