@@ -1,34 +1,13 @@
-type Combinable = number | string;
-type ConversionDescriptor = "as-number" | "as-text";
-
-function combine(
-  input1: Combinable,
-  input2: Combinable,
-  resultConversion: ConversionDescriptor // 리터럴 타입
-) {
-  // const result = input1 + input2;
-  // 타입스크립트는 input1과 2가 union type이라는 것만 체크하여 + 연산자가 동작하지
-  // 않는다고 판단하기에(실제로는 가능하지만), 아래와 같이 동적 타입 체킹으로 이를 회피한다.
-  let result;
-  if (
-    (typeof input1 === "number" && typeof input2 === "number") ||
-    resultConversion === "as-number"
-  ) {
-    // result = parseFloat(input1) + parseFloat(input2);
-    // 자바스크립트 연산자란... 왜 위에는 안 되면서 아래는 되냐...
-    result = +input1 + +input2;
-  } else {
-    result = input1.toString() + input2.toString();
-  }
-
-  return result;
+function add(n1: number, n2: number) {
+  // 일반적으로는 타입스크립트가 타입 추론을 하게끔 return type을 명시하지 않는다고 한다.
+  return n1 + n2;
 }
 
-const combinedAges = combine(30, 26, "as-number");
-console.log(combinedAges);
+function printResult(num: number) {
+  // 함수가 아무것도 반환하지 않을 때의 타입을 명시하고자 한다면 void를 사용해야 한다.
+  // undefined type은 변수에는 적용 가능하지만 함수의 반환 타입으로는 사용할 수 없다.
+  // return; 또는 return undefined;를 명시하면 사용할 수 있지만 굳이...
+  console.log("Result: " + num);
+}
 
-const combinedStringAges = combine("30", "26", "as-number");
-console.log(combinedStringAges);
-
-const combinedNames = combine("Max", "Anna", "as-text");
-console.log(combinedNames);
+printResult(add(5, 12));
