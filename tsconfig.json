@@ -75,6 +75,7 @@
     "functions.ts",
     "objs-arrays-enums.ts",
     "union-aliases.ts",
+    "unknown-never.ts",
     "**/*.dev.ts"
   ]
 }
