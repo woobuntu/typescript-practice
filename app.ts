@@ -1,6 +1,7 @@
 class Department {
-  private employees: string[] = [];
+  protected employees: string[] = [];
   // 이렇게 접근자를 키워드로 설정해주는 것은 자바스크립트에서는 지원하지 않는 기능이다.
+  // private으로 하면 상속 클래스에서는 접근할 수 없기 때문에 protected
 
   constructor(private readonly id: string, private name: string) {}
   // field의 선언과 생성자에서의 초기화를 합친 문법으로 자바스크립트에서는 지원하지 않는다.
@@ -27,12 +28,17 @@ class ITDepartment extends Department {
     super(id, "IT");
     // 부모 클래스의 생성자를 호출하는 키워드
   }
+  addEmployee(name: string) {
+    if (name === "자격미달자") return;
+    this.employees.push(name);
+  }
 }
 
 const it = new ITDepartment("id1", ["a", "b", "c"]);
 
 it.addEmployee("abc");
 it.addEmployee("def");
+it.addEmployee("자격미달자");
 
 it.describe();
 it.printEmployeeInformation();
