@@ -3,9 +3,16 @@ class Department {
   // 이렇게 접근자를 키워드로 설정해주는 것은 자바스크립트에서는 지원하지 않는 기능이다.
   // private으로 하면 상속 클래스에서는 접근할 수 없기 때문에 protected
 
+  static fiscalYear: number = 2020;
+
   constructor(private readonly id: string, private name: string) {}
   // field의 선언과 생성자에서의 초기화를 합친 문법으로 자바스크립트에서는 지원하지 않는다.
   // readonly키워드 역시 자바스크립트에서는 지원하지 않는다.
+
+  // 인스턴스가 아닌 클래스를 매개로 호출하는 static 메서드
+  static createEmployee(name: string) {
+    return { name };
+  }
 
   // 파라미터로 this의 타입을 명시해주는 것은
   // describe메소드가 Department의 구조를 따르는 객체에서만 호출되도록 하는 안전장치라고 볼 수 있다.
