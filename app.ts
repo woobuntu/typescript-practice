@@ -24,17 +24,34 @@ class Department {
 }
 
 class ITDepartment extends Department {
-  constructor(id: string, public admins: string[]) {
+  constructor(
+    id: string,
+    public admins: string[],
+    private lastAdmin: string = admins[0]
+  ) {
     super(id, "IT");
     // 부모 클래스의 생성자를 호출하는 키워드
   }
+
+  get mostRecentAdmin() {
+    if (this.lastAdmin) return this.lastAdmin;
+
+    throw new Error("관리자가 한 명도 없습니다.");
+  }
+
+  set mostRecentAdmin(value: string) {
+    if (!value) throw new Error("관리자 이름을 인자로 넘겨야 합니다.");
+    this.addEmployee(value);
+  }
+
   addEmployee(name: string) {
     if (name === "자격미달자") return;
     this.employees.push(name);
+    this.lastAdmin = name;
   }
 }
 
-const it = new ITDepartment("id1", ["a", "b", "c"]);
+const it = new ITDepartment("id1", []);
 
 it.addEmployee("abc");
 it.addEmployee("def");
@@ -42,5 +59,3 @@ it.addEmployee("자격미달자");
 
 it.describe();
 it.printEmployeeInformation();
-
-console.log(it);
