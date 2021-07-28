@@ -32,13 +32,23 @@ abstract class Department {
 }
 
 class ITDepartment extends Department {
-  constructor(
+  private static instance: ITDepartment;
+
+  // 생성자를 private으로 지정하면 new 키워드로 새 인스턴스를 생성할 수 없다.
+  private constructor(
     id: string,
     public admins: string[],
     private lastAdmin: string = admins[0]
   ) {
     super(id, "IT");
     // 부모 클래스의 생성자를 호출하는 키워드
+  }
+
+  // 싱글톤 클래스의 유일한 인스턴스를 반환하는 static 메서드
+  static getInstance() {
+    if (this.instance) return this.instance;
+    this.instance = new ITDepartment("id머시기", []);
+    return this.instance;
   }
 
   get mostRecentAdmin() {
@@ -63,7 +73,7 @@ class ITDepartment extends Department {
   }
 }
 
-const it = new ITDepartment("id1", []);
+const it = ITDepartment.getInstance();
 
 it.addEmployee("abc");
 it.addEmployee("def");
