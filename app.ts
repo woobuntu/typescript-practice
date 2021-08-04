@@ -1,9 +1,12 @@
 // class와는 달리 청사진 역할이 아니라 그저 타입 정의일 뿐이다.
-
-interface Greetable {
+interface Named {
   readonly name: string;
   // interface에는 public, private, protected는 사용할 수 없지만, readonly는 사용 가능하다.
   // interface가 아닌 type으로 선언해도 마찬가지이다.
+}
+
+// class와는 달리 복수의 interface를 상속하는 것 또한 가능하다!
+interface Greetable extends Named {
   greet(phrase: string): void;
 }
 
