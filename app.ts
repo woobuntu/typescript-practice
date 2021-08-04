@@ -1,4 +1,10 @@
 // class와는 달리 청사진 역할이 아니라 그저 타입 정의일 뿐이다.
+
+// interface로 함수의 타입도 정의할 수 있다.
+interface AddFn {
+  (a: number, b: number): number;
+}
+
 interface Named {
   readonly name: string;
   // interface에는 public, private, protected는 사용할 수 없지만, readonly는 사용 가능하다.
