@@ -9,6 +9,9 @@ interface Named {
   readonly name: string;
   // interface에는 public, private, protected는 사용할 수 없지만, readonly는 사용 가능하다.
   // interface가 아닌 type으로 선언해도 마찬가지이다.
+
+  outputName?: string;
+  // 메소드 이름 옆에도 ?를 붙여 optional하게 설정할 수 있다.
 }
 
 // class와는 달리 복수의 interface를 상속하는 것 또한 가능하다!
@@ -30,6 +33,7 @@ interface Greetable extends Named {
 // 상속과 implements가 다른 점은 implements는 복수의 interface가 적용가능하다는 것이다.
 class Person implements Greetable {
   constructor(public name: string, private age: number) {}
+  // optional한 값은 required값보다 뒤에 위치해야 한다.
 
   greet() {}
 }
