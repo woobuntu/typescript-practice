@@ -88,3 +88,30 @@ function useVehicle(vehicle: Vehicle) {
 
 useVehicle(v1);
 useVehicle(v2);
+
+interface Bird {
+  type: "bird";
+  // discriminated Union을 위한 property의 이름은 꼭 type이어야 하는 것은 아니다.
+  // interface의 정의이기 때문에 여기서의 'bird'는 value가 아니라 literal type이다.
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+      break;
+  }
+  console.log(`Moving with speed : ${speed}`);
+}
