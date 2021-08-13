@@ -134,3 +134,15 @@ function moveAnimal(animal: Animal) {
 const userInputElement = document.getElementById("user-input");
 if (userInputElement)
   (userInputElement as HTMLInputElement).value = "Hi there!";
+
+interface ErrorContainer {
+  // index type
+  [key: string]: string;
+  // 이렇게 인덱스 타입을 설정해두면 ErrorContainer의 모든 속성의 값은 string타입만 허용된다.
+  // 그리고 key는 string으로 전환될 수 있는 값이면 모두 가능하다.
+}
+
+const errorBag: ErrorContainer = {
+  email: "Not a valid email",
+  1: "숫자 1은 문자열 '1'로 전환이 되죠",
+};
