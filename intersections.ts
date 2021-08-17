@@ -40,12 +40,19 @@ type Numeric = number | boolean;
 type Universal = Combinable & Numeric;
 // 교집합이 number이므로 Universal의 타입은 number이다.
 
+function add(a: number, b: number): number;
+function add(a: string, b: number): string;
+function add(a: string, b: string): string;
 function add(a: Combinable, b: Combinable) {
   // typeof를 사용한 type guard
   return typeof a === "string" || typeof b === "string"
     ? a.toString() + b.toString()
     : a + b;
 }
+
+const result = add("a", 1);
+// add 함수를 overload해두었기에 타입스크립트가 result를 string으로 인식할 수 있는 것
+// 그렇지 않았다면 result는 Combinable타입으로만 인식된다.
 
 type UnknownEmployee = Employee | Admin;
 
