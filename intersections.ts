@@ -153,3 +153,11 @@ const errorBag: ErrorContainer = {
   email: "Not a valid email",
   1: "숫자 1은 문자열 '1'로 전환이 되죠",
 };
+
+const fetchedUserData = {
+  id: "u1",
+  name: "Max",
+  // job: { title: "CEO", descriptioin: "My onw company" },
+};
+
+// console.log(fetchedUserData?.job?.title);
