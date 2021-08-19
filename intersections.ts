@@ -161,3 +161,11 @@ const fetchedUserData = {
 };
 
 // console.log(fetchedUserData?.job?.title);
+
+const userInput = 0;
+
+const storedData = userInput ?? "DEFAULT";
+// userInput이 null이거나 undefined일 때만 후자값을 적용하고,
+// ""나 0같은 값이면 그 값을 그대로 사용한다.
+
+console.log(storedData);
