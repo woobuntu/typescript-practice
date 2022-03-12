@@ -1,4 +1,4 @@
-const names: Array<string> = [];
+// const names: Array<string> = [];
 
 const promise: Promise<string> = new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -60,3 +60,29 @@ class DataStorage<T extends string | number | boolean> {
 }
 
 const textStorage = new DataStorage<string>();
+
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+// Partial
+function CreateCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+
+  return courseGoal as CourseGoal;
+}
+
+// Readonly
+const names: Readonly<string[]> = ["Max", "Anna"];
+// names.push("더하기");
+// names.pop();
