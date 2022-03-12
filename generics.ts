@@ -11,10 +11,9 @@ promise.then((data) => {
 });
 
 // T와 U의 intersection
-function merge<T, U>(objA: T, objB: U) {
+function merge<T extends object, U extends object>(objA: T, objB: U) {
+  // Object.assign의 인자로 넘겨주기 위해서는 T와 U 모두 object일 필요가 있다.
   return Object.assign(objA, objB);
 }
 
-const mergedObj = merge({ name: "Max" }, { age: 30 });
-
-mergedObj.name;
+// const mergedObj = merge({ name: "Max" }, 30);
